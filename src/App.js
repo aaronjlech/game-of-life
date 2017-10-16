@@ -9,13 +9,19 @@ class App extends Component {
       generations: 0,
       runGame: true
    }
+
    componentDidMount() {
       // if(this.state.runGame){
       //    this._getNextGrid()
       // }
       this._getNextGrid();
    }
+
    _toggleGame = () => {
+      if(!this.state.runGame){
+         this._getNextGrid();
+      }
+      this.setState({ runGame: !this.state.runGame})
 
    }
 
@@ -24,9 +30,14 @@ class App extends Component {
       grid[x][y] = grid[x][y] ? 0 : 1;
       this.setState({ grid });
    }
+
    _getNextGrid = () => {
 
-        const interval = window.setInterval(() => {
+        const interval = setInterval(() => {
+           if(!this.state.runGame){
+             console.log(interval);
+             clearInterval(interval);
+           }
          let currentGrid = this.state.grid
          const newGrid = []
          for (let y = 0; y < currentGrid.length; y++) {
@@ -42,10 +53,7 @@ class App extends Component {
          }
          this.setState({ grid: newGrid, generations: this.state.generations += 1})
       }, 100)
-      if(!this.state.runGame){
-         console.log('hello!');
-         clearInterval(interval);
-      }
+
    }
    _resetGrid = () => {
       this.setState({grid: makeEmptyGrid(50, 50)})
@@ -59,7 +67,7 @@ class App extends Component {
             <h1>generations: {generations}</h1>
             <div className="button-container">
                <button className="reset" onClick={this._resetGrid}>reset grid</button>
-               <button className="pause" onClick={() =>this._getNextGrid()}>{ runGame ? 'pause' : 'start'} generations</button>
+               <button className="pause" onClick={this._toggleGame}>{ runGame ? 'pause' : 'start'} generations</button>
             </div>
             <div className="grid">
                {grid.length &&
