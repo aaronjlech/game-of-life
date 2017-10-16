@@ -1,0 +1,24 @@
+.life-cell {
+   height: 10px;
+   width: 10px;
+   border: none;
+   padding: 0;
+   border: thin solid #444;
+}
+.alive{
+   background: #16a085;
+}
+.dead{
+   background: #000;
+}
+.row{
+   width: 500px;
+   height: 10px;
+   display: flex;
+}
+.grid{
+   width: 500px;
+   height: 500px;
+   margin: 0 auto;
+   /*border: thin solid #444;*/
+}
