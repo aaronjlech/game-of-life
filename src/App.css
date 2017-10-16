@@ -4,8 +4,6 @@
 .life-cell {
    height: 10px;
    width: 10px;
-   border: none;
-   padding: 0;
    border: thin solid #444;
 }
 .alive{
@@ -30,8 +28,7 @@
 }
 .button {
    margin: 5px;
-   padding: 10px;
-   border: none;
+   padding: 10px 18px;
    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
    font-size: 16px;
    border-radius: 20px;
@@ -42,9 +39,7 @@
    cursor: pointer;
    bottom: 1px;
 }
-.button:focus{
-   outline: none;
-}
+
 .reset {
    background: #e74c3c;
    color: #FFF;

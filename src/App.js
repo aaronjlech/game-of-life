@@ -70,7 +70,7 @@ class App extends Component {
             <h1>Generations: {generations}</h1>
             <div className="button-container">
                <button className="button reset" onClick={this._resetGrid}>reset grid</button>
-               <button className={`button ${playButton}`} onClick={this._toggleGame}>{playButton} generations</button>
+               <button className={`button ${playButton}`} onClick={this._toggleGame}>{playButton}</button>
                <button className="button random" onClick={this._getRandomGrid}>randomize</button>
             </div>
             <div className="grid">
