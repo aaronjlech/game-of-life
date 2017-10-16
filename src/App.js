@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+
 import { makeEmptyGrid, makeRandomGrid, getNeighbourCount, setCellStatus } from "./utilities";
+import GameButton from './components/GameButton';
 import Row from "./components/Row";
 class App extends Component {
    state = {
@@ -69,9 +70,24 @@ class App extends Component {
          <div className="App">
             <h1>Generations: {generations}</h1>
             <div className="button-container">
-               <button className="button reset" onClick={this._resetGrid}>reset grid</button>
-               <button className={`button ${playButton}`} onClick={this._toggleGame}>{playButton}</button>
-               <button className="button random" onClick={this._getRandomGrid}>randomize</button>
+               <GameButton
+                  key="reset"
+                  className="reset"
+                  onClick={this._resetGrid}
+                  label="reset"
+               />
+               <GameButton
+                  key="play"
+                  className={playButton}
+                  onClick={this._toggleGame}
+                  label={playButton}
+               />
+               <GameButton
+                  key="randomize"
+                  className="random"
+                  onClick={this._getRandomGrid}
+                  label="randomize"
+               />
             </div>
             <div className="grid">
                {grid.length &&
