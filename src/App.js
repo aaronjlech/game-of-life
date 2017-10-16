@@ -11,14 +11,14 @@ class App extends Component {
    }
 
    componentDidMount() {
-      // if(this.state.runGame){
-      //    this._getNextGrid()
-      // }
       this._getNextGrid();
    }
 
    _toggleGame = () => {
+      clearInterval(this.interval)
+
       if(!this.state.runGame){
+         console.log('hello');
          this._getNextGrid();
       }
       this.setState({ runGame: !this.state.runGame})
@@ -33,11 +33,8 @@ class App extends Component {
 
    _getNextGrid = () => {
 
-        const interval = setInterval(() => {
-           if(!this.state.runGame){
-             console.log(interval);
-             clearInterval(interval);
-           }
+         this.interval = setInterval(() => {
+
          let currentGrid = this.state.grid
          const newGrid = []
          for (let y = 0; y < currentGrid.length; y++) {
@@ -56,18 +53,25 @@ class App extends Component {
 
    }
    _resetGrid = () => {
-      this.setState({grid: makeEmptyGrid(50, 50)})
+      console.log('ehlloooo');
+      clearInterval(this.interval)
+      this.setState({grid: makeEmptyGrid(50, 50), runGame: false, generations: 0})
    }
-
+   _getRandomGrid = () => {
+      this.setState({grid: makeRandomGrid(50, 50)})
+   }
 
    render() {
       const { grid, generations, runGame } = this.state;
+      console.log(grid);
+      let playButton = runGame ? 'pause' : 'play'
       return (
          <div className="App">
-            <h1>generations: {generations}</h1>
+            <h1>Generations: {generations}</h1>
             <div className="button-container">
-               <button className="reset" onClick={this._resetGrid}>reset grid</button>
-               <button className="pause" onClick={this._toggleGame}>{ runGame ? 'pause' : 'start'} generations</button>
+               <button className="button reset" onClick={this._resetGrid}>reset grid</button>
+               <button className={`button ${playButton}`} onClick={this._toggleGame}>{playButton} generations</button>
+               <button className="button random" onClick={this._getRandomGrid}>randomize</button>
             </div>
             <div className="grid">
                {grid.length &&
