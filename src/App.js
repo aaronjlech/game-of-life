@@ -19,7 +19,6 @@ class App extends Component {
       clearInterval(this.interval)
 
       if(!this.state.runGame){
-         console.log('hello');
          this._getNextGrid();
       }
       this.setState({ runGame: !this.state.runGame})
@@ -45,7 +44,6 @@ class App extends Component {
                //get the number of alive neighbours for current cell
                let neighbourCount = getNeighbourCount(currentGrid, x, y)
                //check to see if current cell is alive or dead
-
                newGrid[y].push(setCellStatus(currentCell, neighbourCount))
             }
          }
@@ -54,7 +52,6 @@ class App extends Component {
 
    }
    _resetGrid = () => {
-      console.log('ehlloooo');
       clearInterval(this.interval)
       this.setState({grid: makeEmptyGrid(50, 50), runGame: false, generations: 0})
    }
@@ -64,7 +61,6 @@ class App extends Component {
 
    render() {
       const { grid, generations, runGame } = this.state;
-      console.log(grid);
       let playButton = runGame ? 'pause' : 'play'
       return (
          <div className="App">
