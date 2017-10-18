@@ -31,8 +31,7 @@ export function getNeighbourCount(currentGrid, x, y)  {
    //total length of rows (y axis)
    let rowCount = currentGrid.length;
    //total length of columns in the given row (x axis)
-   let columnCount = currentGrid[x].length;
-
+   let columnCount = currentGrid[y].length;
    //*** GET LEFT, RIGHT, TOP, BOTTOM COORIDINATES FOR CURRENT cells ***
    // if the current cell is on the first row the rowAbove is set to the last row(wraps to bottom row)
    let rowAbove = (y-1 >= 0) ? y-1 : rowCount - 1;
